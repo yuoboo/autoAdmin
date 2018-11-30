@@ -1,0 +1,16 @@
+{% extends 'list_base.html' %}
+
+{% block title %}
+    <title>任务列表</title>
+{% endblock %}
+
+
+{% block content %}
+    <ul>
+        {% for job in jobs %}
+
+            <li><a href="{% url 'job_edit' ids %}">{{ job.name }}</a></li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}
