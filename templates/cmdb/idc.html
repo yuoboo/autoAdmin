@@ -1,0 +1,14 @@
+{% extends 'list_base.html' %}
+
+{% block title %}
+    <title>机房</title>
+{% endblock %}
+                
+{% block content %}
+    <ul>
+        {% for idc in idcs %}
+            <li><a href="{% url 'idc_edit' idc.id %}">{{ idc.name }}</a> -- <a href="{% url 'idc_del' idc.id%}">删除</a></li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}

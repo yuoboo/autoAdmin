@@ -1,0 +1,15 @@
+{% extends 'list_base.html' %}
+
+{% block title %}
+    <title>项目</title>
+{% endblock %}
+
+{% block content %}
+ <ul>
+    {% for p in projects %}
+        <li><a href="{% url 'project_edit' p.id %}">{{ p.name }}</a> -- <a href="{% url 'project_del' p.id%}">删除</a></li>
+
+    {% endfor %}
+ </ul>
+
+{% endblock %}

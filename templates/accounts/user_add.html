@@ -1,0 +1,14 @@
+
+{% extends 'form_base.html' %}
+
+{% block title %}
+    <title>用户新增</title>
+{% endblock %}
+
+{% block form %}
+    <form  class="form-horizontal" role="form" action="{% url 'user_add' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="保存">
+    </form>
+{% endblock %}

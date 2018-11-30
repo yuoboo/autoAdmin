@@ -1,0 +1,16 @@
+{% extends 'list_base.html' %}
+
+{% block title %}
+    <title>产品线</title>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for p in products %}
+            <li><a href="{% url 'product_edit' p.id %}">{{ p.name }}</a> -- <a href="{% url 'product_del' p.id%}">删除</a></li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+ 

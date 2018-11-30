@@ -1,0 +1,14 @@
+{% extends 'list_base.html' %}
+{% block title %}
+    <title>负责人</title>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for o in owners %}
+            <li><a href="{% url 'appowner_edit' o.id %}">{{ o.name }}</a> -- <a href="{% url 'appowner_del' o.id%}">删除</a></li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}
+

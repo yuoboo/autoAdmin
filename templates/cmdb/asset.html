@@ -1,0 +1,13 @@
+{% extends 'list_base.html' %}
+
+{% block title %}
+    <title>资产</title>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for h in hosts %}
+            <li><a href="{% url 'asset_edit' h.id %}">{{ h.hostname }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
