@@ -7,9 +7,9 @@
 
 {% block content %}
     <ul>
-        {% for job in jobs %}
+        {% for i in intervals %}
 
-            <li><a href="{% url 'job_edit' job.id %}">{{ job.name }}</a></li>
+            <li><a href="{% url 'interval_edit' i.id %}">{{ i.every }}|{{ i.period }}</a></li>
 
         {% endfor %}
     </ul>

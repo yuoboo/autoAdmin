@@ -7,9 +7,9 @@
 
 {% block content %}
     <ul>
-        {% for job in jobs %}
+        {% for c in crontabs %}
 
-            <li><a href="{% url 'job_edit' job.id %}">{{ job.name }}</a></li>
+            <li><a href="{% url 'crontab_edit' c.id %}">{{ c.hour }}|{{ c.day_of_week }}</a></li>
 
         {% endfor %}
     </ul>

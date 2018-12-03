@@ -26,3 +26,76 @@ def job_add(request):
     else:
         form = PeriodicTaskForm()
         return render(request, 'setup/job_add.html', locals())
+
+
+@login_required
+def job_edit(request):
+    return
+
+
+@login_required
+def interval(request):
+    intervals = IntervalSchedule.objects.all()
+    return render(request, 'setup/interval.html', locals())
+
+
+@login_required
+def interval_add(request):
+    if request.method == 'POST':
+        form = IntervalForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'response_con.html', {"msg": u'新增时间间隔成功'})
+        return render(request, 'response_con.html', form.errors)
+    else:
+        form = IntervalForm()
+
+        return render(request, 'setup/interval_add.html', locals())
+
+
+@login_required
+def interval_edit(request, ids):
+    obj = IntervalSchedule.objects.filter(id=ids).first()
+    if request.method == 'POST':
+        form = IntervalForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return render(request, 'response_con.html', {"msg": u'修改时间间隔成功'})
+        return render(request, 'response_con.html', form.errors)
+    else:
+        form = IntervalForm(instance=obj)
+        return render(request, 'setup/interval_add.html', locals())
+
+
+@login_required
+def crontab(request):
+    crontabs = CrontabSchedule.objects.all()
+
+    return render(request, 'setup/crontab.html', locals())
+
+
+@login_required
+def crontab_add(request):
+    if request.method == 'POST':
+        form = CrontabForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'response_con.html', {"msg": u"新增定时时间成功"})
+        return render(request, 'response_con.html', form.errors)
+    else:
+        form = CrontabForm()
+        return render(request, 'setup/crontab_add.html', locals())
+
+
+@login_required
+def crontab_edit(request, ids):
+    obj = CrontabSchedule.objects.filter(id=ids).first()
+    if request.method == 'POST':
+        form = CrontabForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return render(request, 'response_con.html', {"msg": u"定时任务编辑成功"})
+        return render(request, 'response_con.html', form.errors)
+    else:
+        form = CrontabForm(instance=obj)
+        return render(request, 'setup/crontab_add.html', locals())
