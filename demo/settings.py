@@ -117,6 +117,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = 'accounts.UserInfo'
 
+
+# CELERY
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_BROKER_URL = 'redis://:12345@127.0.0.1:6379/5'
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 

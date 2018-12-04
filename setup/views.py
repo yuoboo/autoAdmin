@@ -29,8 +29,17 @@ def job_add(request):
 
 
 @login_required
-def job_edit(request):
-    return
+def job_edit(request, ids):
+    obj = PeriodicTask.objects.filter(id=ids).first()
+    if request.method == 'POST':
+        form = PeriodicTaskForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return render(request, 'response_con.html', {"msg": u'修改任务成功'})
+        return render(request, 'response_con.html', form.errors)
+    else:
+        form = PeriodicTaskForm(instance=obj)
+        return render(request, 'setup/job_edit.html', locals())
 
 
 @login_required
