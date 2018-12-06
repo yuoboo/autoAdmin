@@ -1,24 +1,26 @@
 # encoding=utf8
 from demo.celery import app
-from celery import shared_task, current_app
+from celery import shared_task
+from appconf.models import Host
+import sh
+from subprocess import Popen, PIPE
 
-
-@app.task
-def add(x, y):
-    return x+y
+SCRIPTS_DIR = "/var/opt/adminset/data/scripts/"
 
 
 @shared_task
-def commod(host, name):
-    return 'commod'
+def command(host, name):
+    h = Host.objects.filter(hostname=host).first()
+    cmd = sh.ssh("root@"+h.ip, name)
+    return str(cmd).strip()
 
 
 @shared_task
 def script(host, name):
-    return 'script'
+    h = Host.objects.filter(hostname=host).first()
+    sh.scp(SCRIPTS_DIR+name, "root@{0} /tem/{1}".format(h.ip, name))
+    cmd = "ssh root@"+h.ip + "sh /tem/{0}".format(name)
+    p = Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True)
+    data = p.communicate()
+    return data
 
-
-print app.conf.CELERY_BROKER_URL
-print app.conf.CELERY_RESULT_BACKEND
-for n in current_app.tasks:
-    print n

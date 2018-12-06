@@ -1,0 +1,52 @@
+{% extends 'list_base.html' %}
+
+{% block title %}
+    <title>任务列表</title>
+{% endblock %}
+
+
+{% block content %}
+{#    <ul>#}
+{#        {% for r in results %}#}
+{#            <li><a href="{% url 'job_result' r.id %}">{{ r.task_name }}</a></li>#}
+{##}
+{#        {% endfor %}#}
+{#    </ul>#}
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>task_name</th>
+                <th>task_id</th>
+                <th>status</th>
+                <th>content_type</th>
+                <th>content_encoding</th>
+                <th>task_args</th>
+                <th>task_kwargs</th>
+                <th>result</th>
+                <th>date_done</th>
+                <th>traceback</th>
+                <th>ops</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in results %}
+                <tr>
+                    <td>{{ r.task_name }}</td>
+                    <td>{{ r.task_id }}</td>
+                    <td>{{ r.status }}</td>
+                    <td>{{ r.content_type }}</td>
+                    <td>{{ r.content_encoding }}</td>
+                    <td>{{ r.task_args }}</td>
+                    <td>{{ r.task_kwargs }}</td>
+                    <td>{{ r.result }}</td>
+                    <td>{{ r.date_done }}</td>
+                    <td>{{ r.traceback }}</td>
+                    <td><a href="{% url 'job_result_del' r.id %}"> 删除 </a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+
+    </table>
+{% endblock %}
