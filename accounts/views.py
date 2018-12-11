@@ -37,7 +37,7 @@ def login(request):
                     return redirect(request.POST['next'])
                 else:
                     return render(request, 'response_con.html', {'msg': u'请先激活用户'})
-        return render(request, 'response_con.html', {'msg': form.errors})
+        return render(request, 'response_con.html', {'msg': u"用户或密码错误"})
 
     else:
         form = LoginUserForm()

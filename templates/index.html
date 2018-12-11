@@ -27,7 +27,7 @@
         </li>
 
         <li>
-            <span>任务模块</span>
+            <span>作业平台</span>
             <ul>
                 <li><a href="{% url 'job' %}">任务列表</a></li>
                 <li><a href="{% url 'job_add' %}">任务新增</a></li>
@@ -38,12 +38,31 @@
                 <li><a href="{% url 'job_result' %}">任务结果</a></li>
             </ul>
         </li>
+        <li>
+            <span>持续交付</span>
+            <ul>
+                <li><a href="{% url 'delivery_add' %}">交付新增</a></li>
+                <li><a href="{% url 'delivery' %}">交付列表</a></li>
+            </ul>
+        </li>
+        <li>
+            <span>监控平台</span>
+            <ul>
+                <li><a href="{% url 'monitor' %}">监控平台</a></li>
 
+            </ul>
+        </li>
         <li>
             <span>用户模块</span>
             <ul>
                 <li><a href="{% url 'user_list' %}">用戶列表</a></li>
                 <li><a href="{% url 'user_add' %}">用戶新增</a></li>
+            </ul>
+        </li>
+        <li>
+            <span>全局配置</span>
+            <ul>
+                <li><a href="{% url 'config' %}">配置清单</a></li>
             </ul>
         </li>
 

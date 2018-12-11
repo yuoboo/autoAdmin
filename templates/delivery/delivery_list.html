@@ -1,0 +1,46 @@
+{% extends 'list_base.html' %}
+
+{% block title %}
+    <title>交付</title>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for d in deliverys %}
+            <li>
+                <a href="{% url 'delivery_edit' d.id %}">{{ d.job_name }}</a> ---
+                <a href="javascript:void(_deploy('{% url "delivery_deploy" d.id %}'))">部署</a> |
+                <a href="javascript:void(showlog({{ d.id }}))">日志</a> |
+                <a href="javascript:void(test());">清理</a> |
+                <a href="{% url 'delivery_del' d.id %}">删除</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block js %}
+    <script>
+        function _deploy(url) {
+            $.get(url, function (resp) {
+                layer.msg(resp.msg, {icon: 1})
+            })
+        }
+        function showlog(ids) {
+            layer.msg('this is log');
+            layer.open({
+            type: 2,
+            title: 'Deploy Log View',
+            closeBtn: 1,
+            area: ['600px', '400px'],
+            shadeClose: true, //点击遮罩关闭
+            content: ['/delivery/log/' + ids],
+
+
+          });
+        }
+
+        function test() {
+            layer.msg('this is test', {icon: 1});
+        }
+    </script>
+{% endblock %}

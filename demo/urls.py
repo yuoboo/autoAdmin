@@ -25,5 +25,8 @@ urlpatterns = [
     url(r'^cmdb/', include('cmdb.urls')),
     url(r'^appconf/', include('appconf.urls')),
     url(r'^setup/', include('setup.urls')),
+    url(r'^delivery/', include('delivery.urls')),
+    url(r'^monitor/', include('monitor.urls')),
+    url(r'^config/', include('config.urls')),
     url(r'^admin/', admin.site.urls),
 ]
