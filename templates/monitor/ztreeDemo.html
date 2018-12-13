@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ztreeDemo</title>
+    <link rel="stylesheet" href="/static/ztree/css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="/static/ztree/css/demo.css">
+    <script src="/static/ztree/js/jquery-1.4.4.min.js"></script>
+    <script src="/static/ztree/js/jquery.ztree.core.js"></script>
+</head>
+<script>
+    $(document).ready(function () {
+        var setting = {
+            async: {
+                enable: true,
+                autoParam: ["id", "name"],
+                dataType: 'json',
+                type: "post",
+                url: '{% url "test_tree" %}'
+            },
+        };
+
+        $.fn.zTree.init($("#treeDemo"), setting)
+
+    })
+</script>
+
+<body>
+
+    <h4>ztree Demo</h4>
+    <div class="content-wrapper">
+        <div class="zTreeDemoBackground left">
+		    <ul id="treeDemo" class="ztree"></ul>
+	    </div>
+        <div class="right">
+            <iframe name="myframe" width="900" height="700" frameborder="0"></iframe>
+
+        </div>
+    </div>
+</body>
+</html>

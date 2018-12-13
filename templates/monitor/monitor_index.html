@@ -1,0 +1,58 @@
+
+{% extends 'form_base.html' %}
+
+{% block title %}
+    <title>监控</title>
+{% endblock %}
+{% block head_js %}
+    <script src="/static/js/echarts.min.js"></script>
+	<link rel="stylesheet" href="/static/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <link rel="stylesheet" href="/static/ztree/css/demo.css" type="text/css">
+    <script src="/static/ztree/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="/static/ztree/js/jquery.ztree.core.js"></script>
+    <script>
+        $(document).ready(function () {
+            var setting = {
+                async: {
+                    enable: true,
+                    dataType: 'json',
+                    autoParam: ["name"],
+                    url: '{% url "tree_nodes" %}',
+                }
+            };
+            $.fn.zTree.init($("#treeDemo"), setting)
+
+        })
+
+    </script>
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+{#    <div class="col-md-2 col-md-offset-2" style="border-right: 1px solid #eee">#}
+{#        <ul>#}
+{#            {% for h in hosts %}#}
+{#                <li><a href="#">{{ h.hostname }}</a></li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+
+{#    </div>#}
+{#    <div class="col-md-6">#}
+{##}
+{#    </div>#}
+
+    <div class="col-md-10 col-md-offset-2">
+        <div class="content-wrapper">
+            <div class="zTreeDemoBackground left">
+                <ul id="treeDemo" class="ztree"></ul>
+            </div>
+            <div class="right">
+                <iframe name="myframe" width="650" height="500" frameborder="0"></iframe>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
